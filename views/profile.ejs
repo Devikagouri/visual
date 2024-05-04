@@ -17,10 +17,13 @@
 		background-color: white;
 		color: black;
 	}
+	#imageContainer{
+		border:1px
+	}
 </style>
 
 
-</head><body>
+</head><body onload="loadProfile()">
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -38,34 +41,15 @@
 							<li><a href="goToUpdate" class="icon style2 fa-solid fa-pen-to-square"><span class="label">Edit</span></a></li>
 							
 							<!-- <li><a href="#" class="icon style2 fa-solid fa-envelope-open-text"><span class="label">Twitter</span></a></li> -->
-						</ul></header><!-- Main --><section id="main"><!-- Thumbnails --><section class="thumbnails"><div>
-									<a href="images1/fulls/01.jpg">
-										<img src="images1/thumbs/01.jpg" alt="" width="346" height="494"><h3>Lorem ipsum dolor sit amet</h3>
-									</a>
-									<a href="images1/fulls/02.jpg">
-										<img src="images1/thumbs/02.jpg" alt="" width="346" height="239"><h3>Lorem ipsum dolor sit amet</h3>
-									</a>
-								</div>
-								<div>
-									<a href="images1/fulls/03.jpg">
-										<img src="images1/thumbs/03.jpg" alt="" width="346" height="239"><h3>Lorem ipsum dolor sit amet</h3>
-									</a>
-									<a href="images1/fulls/04.jpg">
-										<img src="images1/thumbs/04.jpg" alt="" width="346" height="339"><h3>Lorem ipsum dolor sit amet</h3>
-									</a>
-									<a href="images1/fulls/05.jpg">
-										<img src="images1/thumbs/05.jpg" alt="" width="346" height="299"><h3>Lorem ipsum dolor sit amet</h3>
-									</a>
-								</div>
-								<div>
-									<a href="images1/fulls/06.jpg">
-										<img src="images1/thumbs/06.jpg" alt="" width="346" height="339"><h3>Lorem ipsum dolor sit amet</h3>
-									</a>
-									<a href="images1/fulls/07.jpg">
-										<img src="images1/thumbs/07.jpg" alt="" width="346" height="504"><h3>Lorem ipsum dolor sit amet</h3>
-									</a>
-								</div>
-							</section></section><!-- Footer --></div>
+						</ul></header><!-- Main -->
+						
+						<section id="main"><!-- Thumbnails -->
+							<section class="thumbnails" id="imageContainer">
+								
+									
+							</section>
+						</section><!-- Footer -->
+					</div>
 
 		
 
@@ -74,4 +58,42 @@
 			<script src="assets1/js/jquery.min.js"></script><script src="assets1/js/jquery.poptrox.min.js"></script><script src="assets1/js/skel.min.js"></script><script src="assets1/js/main.js">
 			
 				
-			</script></body></html>
+			</script>
+		
+			<script>
+				async function loadProfile(event){
+            var token = localStorage.getItem("token");
+      
+            const arr = {token};
+            const obj = JSON.stringify(arr);
+			console.log(obj);
+            const response = await fetch('/profile',{
+              method: 'POST',
+              headers: {
+                'Content-type': 'application/json'
+              },
+              body: obj
+            }).catch(console.error);
+      
+            if(response.ok){
+				var images = await response.json();
+				images.forEach(image=>{
+					console.log(image);
+					var imageElement = document.createElement('img');
+					imageElement.src = `data:${image.image.contentType};base64,${image.image.data.toString('base64')}`
+					imageElement.height = `${image.height}`;
+					imageElement.width = `${image.width}`;
+
+					var imageLink = document.createElement('a');
+					imageLink.href = 'www.google.com';
+					imageLink.appendChild(imageElement);
+
+					document.getElementById('imageContainer').appendChild(imageLink);
+
+				})
+
+            }
+		}
+			</script>
+		
+		</body></html>
