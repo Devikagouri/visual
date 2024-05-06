@@ -1,10 +1,51 @@
 <!DOCTYPE HTML>
-<!--
-	Visualize by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
---><html><head><title>Visualize by TEMPLATED</title><meta charset="utf-8"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="assets1/css/main.css">
+<!-- Head --><head>
+    <!-- Page Meta Tags-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+  
+    <!-- Custom Google Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&amp;family=Roboto:wght@300;400;700&amp;display=auto" rel="stylesheet">
+  
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/V- vogue/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/V- vogue/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/V- vogue/favicon-16x16.png">
+    <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+  
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="./assets/css/libs.bundle.css">
+  
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./assets/css/theme.bundle.css">
+  
+    <!-- Fix for custom scrollbar if JS is disabled-->
+    <noscript>
+      <style>
+        /**
+            * Reinstate scrolling for non-JS clients
+            */
+        .simplebar-content-wrapper {
+          overflow: auto;
+        }
 
+
+      </style>
+    </noscript>
+  
+    <!-- Page Title -->
+    <title>VisualVogue</title>
+  
+  <style type="text/css">.medium-zoom-overlay{position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}</style><style type="text/css">.medium-zoom-overlay{position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}</style>
+
+<link rel="stylesheet" href="assets1/css/main.css">
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
             *{
@@ -20,21 +61,136 @@
 	#imageContainer{
 		border:1px
 	}
+
+	.thumbnail{
+		position: relative;
+	   
+		
+	   }
+	.profile_name{
+		color: black;
+		font-size: xx-large;
+	}
+
+	body{
+		background-image: url("http://wallpapercave.com/wp/ab7sX4F.jpg");
+	}
 </style>
 
 
-</head><body onload="loadProfile()">
+</head><body onload="loadDetails()">
 
+	<nav class="navbar navbar-expand-lg navbar-light bg-white flex-column border-0  ">
+		<div class="container-fluid">
+			<div class="w-100">
+				<div class="d-flex justify-content-between align-items-center flex-wrap">
+	
+					<!-- Logo-->
+					<a class="navbar-brand fw-bold fs-3 m-0 p-0 flex-shrink-0 order-0" href="./index.html">
+						<div class="d-flex align-items-center">
+							<img src="./assets/images/V- vogue/dAE9h601 (1).svg" style="width: 50%;" alt="logo">    
+						</div>
+					</a>
+					<!-- / Logo-->
+	
+					<!-- Navbar Icons-->
+					<ul class="list-unstyled mb-0 d-flex align-items-center order-1 order-lg-2 nav-sidelinks">
+	
+						<!-- Mobile Nav Toggler-->
+						<li class="d-lg-none">
+							<span class="nav-link text-body d-flex align-items-center cursor-pointer" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><i class="ri-menu-line ri-lg me-1"></i> Menu</span>
+						</li>
+						<!-- /Mobile Nav Toggler-->
+	
+						<!-- Navbar Search-->
+						<li class="d-none d-sm-block">
+							<span class="nav-link text-body search-trigger cursor-pointer">Search</span>
+	
+							<!-- Search navbar overlay-->
+							<div class="navbar-search d-none">
+								<div class="input-group mb-3 h-100">
+									<span class="input-group-text px-4 bg-transparent border-0"><i class="ri-search-line ri-lg"></i></span>
+									<input type="text" class="form-control text-body bg-transparent border-0" placeholder="Enter your search terms...">
+									<span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent border-0"><i class="ri-close-circle-line ri-lg"></i></span>
+								</div>
+							</div>
+							<div class="search-overlay"></div>
+							<!-- / Search navbar overlay-->
+	
+						</li>
+						<!-- /Navbar Search-->
+	
+						<!-- Navbar Login-->
+						<li class="ms-1 d-none d-lg-inline-block">
+							<a class="nav-link text-body" href="./login.html">
+								Log In
+							</a>
+						</li>
+						<!-- /Navbar Login-->
+	
+						<!-- Navbar Cart Icon-->
+						<li class="ms-1 d-inline-block position-relative dropdown-cart">
+							<button class="nav-link me-0 disable-child-pointer border-0 p-0 bg-transparent text-body" type="button">
+								Register
+							</button>
+							
+							
+	
+						</li>
+						<!-- /Navbar Cart Icon-->
+	
+					</ul>
+					<!-- Navbar Icons-->                
+	
+					<!-- Main Navigation-->
+					<div class="flex-shrink-0 collapse navbar-collapse navbar-collapse-light w-auto flex-grow-1 order-2 order-lg-1" id="navbarNavDropdown">
+	
+						<!-- Menu-->
+						<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+							<li class="nav-item dropdown dropdown position-static">
+							  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								HOME
+							  </a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#gallery" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								  THEMES
+								</a>
+								
+							  </li>
+							  <li class="nav-item">
+								<a class="nav-link" href="./category.html" role="button">
+								  CHAT
+								</a>
+							  </li>
+							  <li class="nav-item">
+								<a class="nav-link" href="goToProfile" role="button" >
+								  PROFILE
+								</a>
+							  </li>
+							
+						  </ul>                    <!-- / Menu-->
+	
+					</div>
+					<!-- / Main Navigation-->
+	
+				</div>
+			</div>
+		</div>
+	</nav>
 		<!-- Wrapper -->
 			<div id="wrapper">
 
 				<!-- Header -->
-					<header id="header"><span class="avatar"><img src="images1/avatar.jpg" alt="" width="173" height="178"></span>
+					<header id="header">
+						<div class="align-items-center" style="justify-content: center;width:center" ><span class="avatar" id="my_details">
+							
+						</span></div>
 						
 						<ul class="icons">
 							<!-- <li><a href="#" class="icon style2 fa-solid fa-envelope-open-text"><span class="label">Facebook</span></a></li> -->
 
-							<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Chat</span></a></li>
+							<li><a href="goToChat" class="icon style2 fa-envelope-o"><span class="label">Chat</span></a></li>
 
 							<li><a href="goToAddImage" class="icon style2 fa-solid fa-plus"><span class="label">Add</span></a></li>
 							
@@ -44,11 +200,14 @@
 						</ul></header><!-- Main -->
 						
 						<section id="main"><!-- Thumbnails -->
-							<section class="thumbnails" id="imageContainer">
-								
-									
+							<section >
+								<div class="row g-3">
+									<div class="col-12 rounded" class="thumbnails" id="imageContainer">
+										
+									</div>
+								</div>
 							</section>
-						</section><!-- Footer -->
+						</section>
 					</div>
 
 		
@@ -61,39 +220,98 @@
 			</script>
 		
 			<script>
+				async function loadDetails(){
+					var token = localStorage.getItem("token");
+					const arr = {token};
+            		const obj = JSON.stringify(arr);
+            		const response = await fetch('/profileDetails',{
+            	  		method: 'POST',
+            	  		headers: {
+            	  		  'Content-type': 'application/json'
+            	  		},
+              			body: obj
+            		}).catch(console.error);
+
+					if(!response.ok){
+						throw new Error("Error")
+					}
+					else{
+						const profile_details = await response.json();
+						console.log("Profile:",profile_details)
+						var profilePic = document.createElement('img')
+						if(profile_details.profileImg){
+							profilePic.src = `data:${profile_details.profileImg.contentType};base64,${profile_details.profileImg.data.toString('base64')}`
+						}
+						else{
+							profilePic.src = `images1/Default.png`
+						}
+						var profileName = document.createElement('span')
+						profileName.className = "profile_name"
+						profileName.innerHTML = profile_details.name
+
+						var profileBio = document.createElement('p')
+						profileBio.className = "profile_name"
+						profileBio.innerHTML = profile_details.bio
+
+						document.getElementById('my_details').appendChild(profilePic)
+						document.getElementById('my_details').appendChild(profileName)
+						document.getElementById('my_details').appendChild(profileBio)
+
+					}
+					loadProfile()
+				}
 				async function loadProfile(event){
-            var token = localStorage.getItem("token");
+            		var token = localStorage.getItem("token");
       
-            const arr = {token};
-            const obj = JSON.stringify(arr);
-			console.log(obj);
-            const response = await fetch('/profile',{
-              method: 'POST',
-              headers: {
-                'Content-type': 'application/json'
-              },
-              body: obj
-            }).catch(console.error);
+            		const arr = {token};
+            		const obj = JSON.stringify(arr);
+					console.log(obj);
+            		const response = await fetch('/profile',{
+            	  		method: 'POST',
+            	  		headers: {
+            	  		  'Content-type': 'application/json'
+            	  		},
+              			body: obj
+            		}).catch(console.error);
       
-            if(response.ok){
-				var images = await response.json();
-				images.forEach(image=>{
-					console.log(image);
-					var imageElement = document.createElement('img');
-					imageElement.src = `data:${image.image.contentType};base64,${image.image.data.toString('base64')}`
-					imageElement.height = `${image.height}`;
-					imageElement.width = `${image.width}`;
+		            if(response.ok){
+						var images = await response.json();
+						images.forEach(image=>{
+							console.log(image);
+							var imageElement = document.createElement('img');
+							imageElement.src = `data:${image.image.contentType};base64,${image.image.data.toString('base64')}`
+							imageElement.height = `${image.height}`;
+							imageElement.width = `${image.width}`;
+							imageElement.id = image._id;
 
-					var imageLink = document.createElement('a');
-					imageLink.href = 'www.google.com';
-					imageLink.appendChild(imageElement);
+							imageElement.style.marginTop ='3rem';
+							imageElement.style.marginRight = '1rem';
+							imageElement.style.marginBottom = '1rem';
+							imageElement.style.marginLeft = '2rem'; 
+							imageElement.style.borderRadius='3px';
 
-					document.getElementById('imageContainer').appendChild(imageLink);
+							imageElement.onclick = function(){
+								viewQuotes(image._id)
+							}
 
-				})
-
-            }
-		}
+							document.getElementById('imageContainer').appendChild(imageElement);
+						})
+            		}
+				}
+				async function viewQuotes(img_id){
+					fetch(`/viewQuotes/${img_id}`)
+					.then(async response => {
+						if(!response.ok){
+							throw new Error("Response Not Ok")
+						}
+						else{
+							const artDetails = await response.json()
+							console.log(artDetails)
+							localStorage.setItem('quoteDetails', JSON.stringify(artDetails))
+							window.location.href = '/goToQuotes'
+						}
+					})
+				}
 			</script>
 		
 		</body></html>

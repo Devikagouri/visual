@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Application</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .chat-row {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    .chat-row:hover {
+        background-color: #f2f2f2;
+    }
+    .chat-content {
+        flex: 1;
+    }
+    .chat-title {
+        font-weight: bold;
+    }
+    .chat-message {
+        color: #666;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <!-- Chat Rows -->
+    <div class="chat-row">
+        <div class="chat-content">
+            <div class="chat-title">Customer 1</div>
+        </div>
+    </div>
+    <div class="chat-row">
+        <div class="chat-content">
+            <div class="chat-title">Customer 2</div>
+        </div>
+    </div>
+    <div class="chat-row">
+        <div class="chat-content">
+            <div class="chat-title">Customer 3</div>
+        </div>
+    </div>
+    <!-- Add more chat rows as needed -->
+</div>
+</body>
+</html>

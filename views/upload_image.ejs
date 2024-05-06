@@ -156,7 +156,7 @@
                 event.preventDefault();
                 
                 var formdata = new FormData();
-
+                var artID = Date.now();
                 const title = document.getElementById('title').value;
                 const description = document.getElementById('description').value;
                 const theme = document.getElementById('theme').value;
@@ -166,6 +166,7 @@
                 const input_img = document.getElementById('input_img').files[0];
                 const token = localStorage.getItem("token");
                 
+                formdata.append('artID',artID);
                 formdata.append('title',title);
                 formdata.append('description',description);
                 formdata.append('theme',theme);

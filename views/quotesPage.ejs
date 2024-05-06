@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <body onload="showQuotePage()">
+        <h2>Quotes</h2>
+        <div id="quoteContainer"></div>
+    
+        <script>
+            async function showQuotePage(){
+                const quote_details = JSON.parse(localStorage.getItem('quoteDetails'))
+                console.log(quote_details)
+
+                imageElement = document.createElement('img')
+                imageElement.src = `data:${quote_details[0].image.contentType};base64,${quote_details[0].image.data.toString('base64')}`
+                imageElement.height = 300
+                imageElement.width = 200
+                imageTitle = document.createElement('h3')
+                imageTitle.innerHTML = quote_details[0].title
+                document.getElementById('quoteContainer').appendChild(imageElement)
+                document.getElementById('quoteContainer').appendChild(imageTitle)
+
+                quote_details.forEach(quote => {
+                    let quoteElement = document.createElement('div');
+                    let name = document.createElement('p');
+                    let username = document.createElement('p');
+                    let phno = document.createElement('p');
+                    let email = document.createElement('p');
+                    let price = document.createElement('p');
+
+                    name.innerHTML = "Name: "+quote.name;
+                    username.innerHTML = "Username: "+quote.username;
+                    phno.innerHTML = "Phone No: "+quote.phno;
+                    email.innerHTML = "Email: "+quote.email;
+                    price.innerHTML = "Quoted Price: "+quote.price;
+
+                    quoteElement.appendChild(name);
+                    quoteElement.appendChild(username);
+                    quoteElement.appendChild(phno);
+                    quoteElement.appendChild(email);
+                    quoteElement.appendChild(price);
+
+                    document.getElementById('quoteContainer').appendChild(quoteElement);
+                    document.getElementById('quoteContainer').appendChild(document.createElement('br'))
+});
+
+            }
+        </script>
+    </body>
+</html>

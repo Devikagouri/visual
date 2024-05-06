@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const artSchema = new mongoose.Schema({
+    artID: {
+        type: Number, 
+        required: true},
     image: {
         data: Buffer,
         type: String

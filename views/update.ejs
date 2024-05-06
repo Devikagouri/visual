@@ -167,7 +167,10 @@
         <script>
             document.getElementById('updateForm').addEventListener('submit',async function(event){
                 event.preventDefault();
-                const image = document.getElementsByName('profile_image')[0].files[0];
+
+                var formdata = new FormData();
+                
+                const proImage = document.getElementsByName('profile_image')[0].files[0];
                 const username = document.getElementsByName('username')[0].value;
                 const bio = document.getElementsByName('biography')[0].value;
                 const fullname = document.getElementsByName('fullname')[0].value;
@@ -176,29 +179,36 @@
                 const phno = document.getElementsByName('phno')[0].value;
                 const password = document.getElementsByName('newPW')[0].value;
                 const token = localStorage.getItem("token");
-          
-                const arr = {image,fullname,username,email,password,phno,location,bio,token};
-                console.log(arr);
-                const obj = JSON.stringify(arr);
-                const response = await fetch('/update',{
-                  method: 'POST',
-                  headers: {
-                    'Content-type': 'application/json'
-                  },
-                  body: obj
-                }).catch(console.error);
-          
-                if(response.redirected){
-                  window.location.href = response.url;
-                }
-            
 
-            const responseText = await response.text();
-            const myobj = JSON.parse(responseText);
-            document.getElementById('check_username').innerHTML = myobj.uname;
-            document.getElementById('check_email').innerHTML = myobj.mail;
-            document.getElementById('check_phno').innerHTML = myobj.ph;
-            window.confirm(myobj.success);
+                if(username && bio && fullname && email && location && phno && password){
+                  formdata.append('image',proImage);
+                  formdata.append('username',username);
+                  formdata.append('bio',bio);
+                  formdata.append('fullname',fullname);
+                  formdata.append('email',email);
+                  formdata.append('location',location);
+                  formdata.append('phno',phno);
+                  formdata.append('password',password);
+                  formdata.append('token',token);
+
+                  console.log(formdata);
+
+                  const response = await fetch('/update',{
+                    method:'POST',
+                    body: formdata
+                  })
+                  
+                  const responseText = await response.text()
+                  console.log("RT: ",responseText)
+                  const myobj = JSON.parse(responseText);
+                  document.getElementById('check_username').innerHTML = myobj.uname;
+                  document.getElementById('check_email').innerHTML = myobj.mail;
+                  document.getElementById('check_phno').innerHTML = myobj.ph;
+                  window.confirm(myobj.success);
+                }
+                else{
+                  window.confirm(`Fill All fields\nFill Current details if don't want to change`)
+                }
 
            
       

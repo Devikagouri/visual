@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<!--
+	Visualize by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+--><html><head><title>Visualize by TEMPLATED</title><meta charset="utf-8"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="assets1/css/main.css">
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins',sans-serif;
+            }
+	body{
+		background-color: white;
+		color: black;
+	}
+	#imageContainer{
+		border:1px
+	}
+
+	.thumbnail{
+		position: relative;
+	   
+		
+	   }
+</style>
+
+
+</head><body onload="loadProfile()">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header"><span class="avatar"><img src="images1/avatar.jpg" alt="" width="173" height="178"></span>
+						
+						<ul class="icons">
+							<!-- <li><a href="#" class="icon style2 fa-solid fa-envelope-open-text"><span class="label">Facebook</span></a></li> -->
+
+							<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Chat</span></a></li>
+
+							<li><a href="goToAddImage" class="icon style2 fa-solid fa-plus"><span class="label">Add</span></a></li>
+							
+							<li><a href="goToUpdate" class="icon style2 fa-solid fa-pen-to-square"><span class="label">Edit</span></a></li>
+							
+							<!-- <li><a href="#" class="icon style2 fa-solid fa-envelope-open-text"><span class="label">Twitter</span></a></li> -->
+						</ul></header><!-- Main -->
+						
+						<section id="main"><!-- Thumbnails -->
+							<section >
+								<div class="row g-3">
+									<div class="col-12 rounded" class="thumbnails" id="imageContainer">
+										
+									</div>
+								</div>
+							</section>
+						</section>
+					</div>
+
+		
+
+
+		<!-- Scripts -->
+			<script src="assets1/js/jquery.min.js"></script><script src="assets1/js/jquery.poptrox.min.js"></script><script src="assets1/js/skel.min.js"></script><script src="assets1/js/main.js">
+			
+				
+			</script>
+		
+			<script>
+				async function loadProfile(event){
+            		var token = localStorage.getItem("token");
+      
+            		const arr = {token};
+            		const obj = JSON.stringify(arr);
+					console.log(obj);
+            		const response = await fetch('/profile',{
+            	  		method: 'POST',
+            	  		headers: {
+            	  		  'Content-type': 'application/json'
+            	  		},
+              			body: obj
+            		}).catch(console.error);
+      
+		            if(response.ok){
+						var images = await response.json();
+						images.forEach(image=>{
+							console.log(image);
+							var imageElement = document.createElement('img');
+							imageElement.src = `data:${image.image.contentType};base64,${image.image.data.toString('base64')}`
+							imageElement.height = `${image.height}`;
+							imageElement.width = `${image.width}`;
+							imageElement.id = image._id;
+
+							imageElement.style.marginTop ='3rem';
+							imageElement.style.marginRight = '1rem';
+							imageElement.style.marginBottom = '1rem';
+							imageElement.style.marginLeft = '2rem'; 
+							imageElement.style.borderRadius='3px';
+
+							imageElement.onclick = function(){
+								loadImage(image._id)
+							}
+
+							document.getElementById('imageContainer').appendChild(imageElement);
+						})
+            		}
+				}
+				async function loadImage(img_id){
+					console.log("Clicked")
+					console.log(img_id)
+					fetch(`/getImageDetails/${img_id}`)
+					.then(async response=>{
+						if(!response.ok){
+							throw new Error("Response Not Ok")
+						}
+						else{
+							const productDetails = await response.json()
+							console.log(productDetails)
+							localStorage.setItem('productDetails', JSON.stringify(productDetails))
+							window.location.href = '/goToProduct'
+						}
+					})
+				}
+			</script>
+		
+		</body></html>

@@ -9,6 +9,8 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/user');
 const Artwork = require('./models/art');
 const bodyParser = require('body-parser');
+const {ObjectId} = require('mongodb');
+const { name } = require('ejs');
 
 const app = express();
 
@@ -117,7 +119,7 @@ app.post('/login',(req,res)=>{
             var key;
             if(document){
                 //redirect to home
-                const token = jwt.sign({username:document.username},"secret_key");
+                const token = jwt.sign({id:document._id,username:document.username},"secret_key");
                 res.json({token});
             }
             else{
@@ -147,6 +149,10 @@ app.get('/goToUpdate',(req,res)=>{
     res.render('update');
 });
 
+app.get('/goToChat',(req,res)=>{
+    res.render('chat');
+});
+
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads')
@@ -160,8 +166,9 @@ var upload = multer({ storage: storage });
 
 
 app.post('/upload',upload.single('image'),(req,res)=>{
-    console.log(req.body);
+    console.log("Upload Body: ",req.body);
 
+    var artID = req.body.artID;
     var title = req.body.title;
     var description = req.body.description;
     var theme = req.body.theme;
@@ -178,13 +185,16 @@ app.post('/upload',upload.single('image'),(req,res)=>{
         else{
             console.log('decoded');
             decoded_username = decoded.username;
-            console.log(decoded_username);
+            decoded_id = decoded.id;
+            console.log("UP D uname: ",decoded_username);
+            console.log("UP D ID: ",decoded_id)
         }
     })
 
     var username = decoded_username;
 
     var data = {
+        "artID": artID,
         "title": title,
         "description": description,
         "theme": theme,
@@ -222,8 +232,10 @@ app.post('/profile',(req,res)=>{
         }
         else{
             console.log('decoded');
+            decoded_id = decoded.id
             decoded_username = decoded.username;
-            console.log(decoded_username);
+            console.log("D uname: ",decoded_username);
+            console.log("D Id: ",decoded_id)
         }
     })
 
@@ -236,14 +248,96 @@ app.post('/profile',(req,res)=>{
 })
 
 
+app.post('/profileDetails',(req,res)=>{
+    console.log("Profile Token");
+    var token = req.body.token;
+    console.log(token);
+
+    jwt.verify(token,"secret_key",(err,decoded)=>{
+        if(err){
+            console.log('Invalid token');
+        }
+        else{
+            console.log('decoded profile token');
+            decoded_username = decoded.username;
+            decoded_id = decoded.id;
+            console.log(decoded_username);
+            console.log(decoded_id);
+        }
+    })
+
+    const nid = new ObjectId(decoded_id)
+    console.log("filer: ",nid)
+    db.collection("User").findOne({_id:nid}, (err,document)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log("Profile:",document);
+            res.json(document);
+        }
+    })
+})
 
 
 
+app.post('/product',(req,res)=>{
+    console.log("token");
+    var artID = req.body.artID;
+    var token = req.body.token;
+    console.log(token);
+
+    data ={
+        "artID": artID
+    }
+
+    jwt.verify(token,"secret_key",(err,decoded)=>{
+        if(err){
+            console.log('Invalid token');
+        }
+        else{
+            console.log('decoded');
+            decoded_username = decoded.username;
+            console.log(decoded_username);
+        }
+    })
+    var user_fullname;
+    db.collection("User").findOne({username:decoded_username},(err,doc)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            user_fullname = document.name;
+        }
+    })
+
+    db.collection("Artwork").find({username:decoded_username, artID:data.artID}).toArray().then(arr_img=>{
+        console.log(arr_img);
+        arr = {
+            image: arr_img,
+            fname: user_fullname
+        }
+        res.json(arr);
+    }).catch(error=>{
+        console.log(error);
+    })
+})
+
+var profileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'profile')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname + '-' + Date.now())
+    }
+});
+
+var profileUpload = multer({ storage: profileStorage });
 
 
-
-app.post('/update',upload.single('image'),(req,res)=>{
-    console.log("body:",req.body);
+app.post('/update',profileUpload.single('image'),(req,res)=>{
+    console.log("Update body:",req.body);
+    console.log("Update file:",req.file);
     var name = req.body.fullname;
     var username = req.body.username;
     var email = req.body.email;
@@ -251,6 +345,8 @@ app.post('/update',upload.single('image'),(req,res)=>{
     var phno = req.body.phno;
     var location = req.body.location;
     var bio = req.body.bio;
+
+    var decoded_id;
 
     const token = req.body.token;
     jwt.verify(token,"secret_key",(err,decoded)=>{
@@ -260,19 +356,16 @@ app.post('/update',upload.single('image'),(req,res)=>{
         else{
             console.log('decoded');
             decoded_username = decoded.username;
+            decoded_id = decoded.id
             console.log(decoded_username);
-            const token = jwt.sign({username:username},"secret_key");
-            jwt.verify(token,"secret_key",(err,decoded)=>{
-                if(err){
-                    console.log('Invalid token');
-                }
-            })
+            console.log(decoded_id)
+            
         }
     })
 
     var data = {
         "image": {
-            data:fs.readFileSync(path.join(__dirname+'/uploads/'+req.body.image)),
+            data:fs.readFileSync(path.join(__dirname+'/profile/'+req.file.filename)),
             contentType: 'image/png'
         },
         "name" : name,
@@ -293,8 +386,9 @@ app.post('/update',upload.single('image'),(req,res)=>{
         else
         {
             var uname,mail,ph;
-            if(document){
-               
+            nid = new ObjectId(decoded_id)
+            if(document && document._id.toString() != nid.toString()){
+               console.log(nid)
                 console.log('found document: ',document);
                 if(document.username==data.username){
                     uname = 'Username already exists';
@@ -316,24 +410,35 @@ app.post('/update',upload.single('image'),(req,res)=>{
                 }
 
                 returnObj = {uname,mail,ph};
+                console.log(JSON.stringify(returnObj))
                 res.send(JSON.stringify(returnObj));
 
                 
             }
             else{
-                db.collection("User").findOneAndUpdate({username:decoded_username},{$set:{
+                const nid = new ObjectId(decoded_id)
+                console.log(nid)
+                db.collection("User").findOneAndUpdate({_id:nid},{$set:{
                     "name": data.name,
                     "username": data.username,
                     "email": data.email,
                     "phno": data.phno,
                     "password":data.password,
                     "location": data.location,
-                    "bio": data.bio
+                    "bio": data.bio,
+                    "profileImg":data.image
                 }},(err,collection)=>{
                     if(err){
                         throw err;
                     }
                     else{
+                        db.collection("Artwork").updateMany({username:decoded_username},{$set: {username:data.username}})
+                        const token = jwt.sign({id:decoded_id,username:data.username},"secret_key");
+                        jwt.verify(token,"secret_key",(err,decoded)=>{
+                            if(err){
+                                console.log('Invalid token');
+                            }
+                        })
                         var success = "Successfully Updated";
                         var uname='',mail='',ph='';
                         obj = {uname,mail,ph,success};
@@ -348,7 +453,131 @@ app.post('/update',upload.single('image'),(req,res)=>{
     
 });
 
+app.get('/goToProduct',(req,res)=>{
+    res.render('product')
+})
 
+app.get('/goToQuotes',(req,res)=>{
+    res.render('quotesPage')
+})
+
+app.get('/getImageDetails/:id',async (req,res)=>{
+    const id = req.params.id;
+    console.log(id)
+    const nid = new ObjectId(id)
+    console.log(nid)
+    db.collection('Artwork').findOne({_id:nid}, async (err,document)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log("Found: ",document)
+            db.collection('User').findOne({username:document.username}, async (err,user)=>{
+                if(err){
+                    console.log(err)
+                }
+                else{
+                    console.log(user)
+                    var obj = {
+                        "document_key": document,
+                        "user_key" : user
+                    }
+                    console.log(obj)
+                    res.json(obj)
+                }
+            })
+        }
+    })
+})
+
+app.get('/viewQuotes/:id',async (req,res)=>{
+    const id = req.params.id;
+    console.log(id)
+    const nid = new ObjectId(id)
+    console.log(nid)
+    db.collection('Quote').find({artID:nid}).toArray().then(all_quotes => {
+        res.json(all_quotes)
+    }).catch(error=>{
+        console.log(error)
+    })
+})
+
+app.get('/homeImages',async (req,res)=>{
+    db.collection("Artwork").find({}).toArray().then(all_arr_img=>{
+        console.log(all_arr_img);
+        res.json(all_arr_img);
+    }).catch(error=>{
+        console.log(error);
+    })
+})
+
+app.post('/quote',(req,res)=>{
+    const { title, image_id, token, price } = req.body;
+    console.log("Title: ", title);
+    console.log("Image ID: ", image_id);
+    console.log("Token: ", token);
+    console.log("Price: ", price);
+
+    var decoded_id;
+    jwt.verify(token,"secret_key",(err,decoded)=>{
+        if(err){
+            console.log('Invalid token');
+        }
+        else{
+            console.log('decoded');
+            decoded_username = decoded.username;
+            decoded_id = decoded.id
+            // console.log(decoded_username);
+            // console.log(decoded_id)
+            
+        }
+    })
+
+    var image;
+
+    const nid = new ObjectId(image_id)
+    db.collection('Artwork').findOne({_id:nid}, async (err,document)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log("Found: ",document)
+            const uid = new ObjectId(decoded_id)
+            db.collection('User').findOne({_id:uid}, async (err,user)=>{
+                if(err){
+                    console.log(err)
+                }
+                else{
+                    console.log("User: ",user)
+                    var obj = {
+                        'artID':document._id,
+                        'image':document.image,
+                        'username':user.username,
+                        'name':user.username,
+                        'phno':user.phno,
+                        'email':user.email,
+                        'title':document.title,
+                        'price':price
+                    }
+                    console.log(obj)
+                    db.collection('Quote').insertOne(obj,(err,collection)=>{
+                        if(err){
+                            console.log(err)
+                            key = "Failed to Quote"
+                            res.json({key})
+                        }
+                        else{
+                            console.log("Quoted Successfully")
+                            key = "Quoted Successfully"
+                            res.json({key})
+                        }
+                    })
+                }
+            })
+        }
+    })
+
+})
 
 
 

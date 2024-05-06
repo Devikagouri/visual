@@ -41,7 +41,7 @@
     <title>VisualVogue</title>
   
   <style type="text/css">.medium-zoom-overlay{position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}</style><style type="text/css">.medium-zoom-overlay{position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}</style></head>
-  <body class="page-loaded" data-aos-easing="ease-out-quad" data-aos-duration="700" data-aos-delay="0">
+  <body onload="loadAll()" class="page-loaded" data-aos-easing="ease-out-quad" data-aos-duration="700" data-aos-delay="0">
   
       <!-- Navbar -->
       <!-- Navbar -->
@@ -96,75 +96,9 @@
                           <!-- Navbar Cart Icon-->
                           <li class="ms-1 d-inline-block position-relative dropdown-cart">
                               <button class="nav-link me-0 disable-child-pointer border-0 p-0 bg-transparent text-body" type="button">
-                                  Bag (2)
+                                  Register
                               </button>
-                              <div class="cart-dropdown dropdown-menu" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1166px, 78px);" data-popper-placement="bottom-end">
                               
-                                  <!-- Cart Header-->
-                                  <div class="d-flex justify-content-between align-items-center border-bottom pt-3 pb-4">
-                                      <h6 class="fw-bolder m-0">Cart Summary (2 items)</h6>
-                                      <i class="ri-close-circle-line text-muted ri-lg cursor-pointer btn-close-cart"></i>
-                                  </div>
-                                  <!-- / Cart Header-->
-                              
-                                  <!-- Cart Items-->
-                                  <div>
-                              
-                                      <!-- Cart Product-->
-                                      <div class="row mx-0 py-4 g-0 border-bottom">
-                                          <div class="col-2 position-relative">
-                                              <picture class="d-block ">
-                                                  <img class="img-fluid" src="./assets/images/products/product-cart-1.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                              </picture>
-                                          </div>
-                                          <div class="col-9 offset-1">
-                                              <div>
-                                                  <h6 class="justify-content-between d-flex align-items-start mb-2">
-                                                      Nike Air VaporMax 2021
-                                                      <i class="ri-close-line ms-3"></i>
-                                                  </h6>
-                                                  <span class="d-block text-muted fw-bolder text-uppercase fs-9">Size: 9 / Qty: 1</span>
-                                              </div>
-                                              <p class="fw-bolder text-end text-muted m-0">$85.00</p>
-                                          </div>
-                                      </div>
-                                      <!-- Cart Product-->
-                                      <div class="row mx-0 py-4 g-0 border-bottom">
-                                          <div class="col-2 position-relative">
-                                              <picture class="d-block ">
-                                                  <img class="img-fluid" src="./assets/images/products/product-cart-2.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
-                                              </picture>
-                                          </div>
-                                          <div class="col-9 offset-1">
-                                              <div>
-                                                  <h6 class="justify-content-between d-flex align-items-start mb-2">
-                                                      Nike ZoomX Vaporfly
-                                                      <i class="ri-close-line ms-3"></i>
-                                                  </h6>
-                                                  <span class="d-block text-muted fw-bolder text-uppercase fs-9">Size: 11 / Qty: 1</span>
-                                              </div>
-                                              <p class="fw-bolder text-end text-muted m-0">$125.00</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <!-- /Cart Items-->
-                              
-                                  <!-- Cart Summary-->
-                                  <div>
-                                      <div class="pt-3">
-                                          <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-start mb-4 mb-md-2">
-                                              <div>
-                                                  <p class="m-0 fw-bold fs-5">Grand Total</p>
-                                                  <span class="text-muted small">Inc $45.89 sales tax</span>
-                                              </div>
-                                              <p class="m-0 fs-5 fw-bold">$422.99</p>
-                                          </div>
-                                      </div>
-                                      <a href="./cart.html" class="btn btn-outline-dark w-100 text-center mt-4" role="button">View Cart</a>
-                                      <a href="./checkout.html" class="btn btn-dark w-100 text-center mt-2" role="button">Proceed To Checkout</a>
-                                  </div>
-                                  <!-- / Cart Summary-->
-                                </div>
                               
       
                           </li>
@@ -184,13 +118,13 @@
                                 </a>
                               </li>
                               <li class="nav-item dropdown">
-                                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <a class="nav-link dropdown-toggle" href="#gallery" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     THEMES
                                   </a>
                                   
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" href="./category.html" role="button">
+                                  <a class="nav-link" href="goToChat" role="button">
                                     CHAT
                                   </a>
                                 </li>
@@ -279,7 +213,7 @@
                       <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100" style="transition-duration: 0ms; transform: translate3d(100px, 0px, 0px);">
                         <span class="text-outline-light">Modern</span> Art</h2>
                       <div data-swiper-parallax-y="-25" style="transition-duration: 0ms; transform: translate3d(0px, -25px, 0px);">
-                        <a href="./category.html" class="btn btn-psuedo text-white" role="button">Visit the art</a>
+                        <a href="#gallery" class="btn btn-psuedo text-white" role="button">Visit the art</a>
                       </div>
                     </div>
                   </div>
@@ -288,7 +222,7 @@
                   <!-- Slide-->
                   <div class="swiper-slide position-relative h-100 w-100" data-swiper-slide-index="1" style="width: 1096px; transition-duration: 0ms; opacity: 1; transform: translate3d(-2192px, 0px, 0px);">
                     <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
-                      <div class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden" data-swiper-parallax="-100" style="will-change: transform; background-image: url(&quot;./assets/images/banners/banner-2.jpg&quot;); transition-duration: 0ms; transform: translate3d(-100px, 0px, 0px);">
+                      <div class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden" data-swiper-parallax="-100" style="will-change: transform; background-image: url(&quot;./assets/images/banners/banners2.jpg&quot;); transition-duration: 0ms; transform: translate3d(-100px, 0px, 0px);">
                       </div>
                     </div>
                     <div class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
@@ -296,7 +230,7 @@
                       <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100" style="transition-duration: 0ms; transform: translate3d(100px, 0px, 0px);">
                         Acrylic <span class="text-outline-light">World</span></h2>
                       <div data-swiper-parallax-y="-25" style="transition-duration: 0ms; transform: translate3d(0px, -25px, 0px);">
-                        <a href="./category.html" class="btn btn-psuedo text-white" role="button">Shop Latest Adidas</a>
+                        <a href="#gallery" class="btn btn-psuedo text-white" role="button">View Art</a>
                       </div>
                     </div>
                   </div>
@@ -305,15 +239,15 @@
                   <!-- Slide-->
                   <div class="swiper-slide position-relative h-100 w-100" data-swiper-slide-index="2" style="width: 1096px; transition-duration: 0ms; opacity: 1; transform: translate3d(-3288px, 0px, 0px);">
                     <div class="w-100 h-100 overflow-hidden position-absolute z-index-1 top-0 start-0 end-0 bottom-0">
-                      <div class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden" data-swiper-parallax="-100" style="will-change: transform; background-image: url(&quot;./assets/images/banners/banner-4.jpg&quot;); transition-duration: 0ms; transform: translate3d(-100px, 0px, 0px);">
+                      <div class="w-100 h-100 bg-img-cover bg-pos-center-center overflow-hidden" data-swiper-parallax="-100" style="will-change: transform; background-image: url(&quot;./assets/images/banners/banner3.jpg&quot;); transition-duration: 0ms; transform: translate3d(-100px, 0px, 0px);">
                       </div>
                     </div>
                     <div class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
-                      <p class="title-small text-white opacity-75 mb-0" data-swiper-parallax="-100" style="transition-duration: 0ms; transform: translate3d(-100px, 0px, 0px);">Just Do it</p>
-                      <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100" style="transition-duration: 0ms; transform: translate3d(100px, 0px, 0px);">
-                        Nike <span class="text-outline-light">SS21</span></h2>
+                      <p class="title-small text-black opacity-75 mb-0" data-swiper-parallax="-100" style="transition-duration: 0ms; transform: translate3d(-100px, 0px, 0px);">Let's build an Art Community</p>
+                      <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-black" data-swiper-parallax="100" style="transition-duration: 0ms; transform: translate3d(100px, 0px, 0px);">
+                        Artistic <span class="text-outline-dark"> Expression</span></h2>
                       <div data-swiper-parallax-y="-25" style="transition-duration: 0ms; transform: translate3d(0px, -25px, 0px);">
-                        <a href="./category.html" class="btn btn-psuedo text-white" role="button">Shop Latest Nike</a>
+                        <a href="#gallery" class="btn btn-psuedo text-black" role="button">View Art</a>
                       </div>
                     </div>
                   </div>
@@ -326,9 +260,9 @@
                       </div>
                     </div>
                     <div class="container position-relative z-index-10 d-flex h-100 align-items-start flex-column justify-content-center">
-                      <p class="title-small text-white opacity-75 mb-0" data-swiper-parallax="-100" style="transition-duration: 0ms; transform: translate3d(-100px, 0px, 0px);">Look Good Feel Good</p>
+                      <p class="title-small text-white opacity-75 mb-0" data-swiper-parallax="-100" style="transition-duration: 0ms; transform: translate3d(-100px, 0px, 0px);">The Artistry</p>
                       <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100" style="transition-duration: 0ms; transform: translate3d(100px, 0px, 0px);">
-                        <span class="text-outline-light">Sustainable</span> Fashion</h2>
+                        <span class="text-outline-light">Acrylic </span> World </h2>
                       <div data-swiper-parallax-y="-25" style="transition-duration: 0ms; transform: translate3d(0px, -25px, 0px);">
                         <a href="./category.html" class="btn btn-psuedo text-white" role="button">Why We Are Different</a>
                       </div>
@@ -346,7 +280,7 @@
                       <h2 class="display-3 tracking-wide fw-bold text-uppercase tracking-wide text-white" data-swiper-parallax="100" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
                         <span class="text-outline-light">Modern</span> Art</h2>
                       <div data-swiper-parallax-y="-25" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
-                        <a href="./category.html" class="btn btn-psuedo text-white" role="button">Visit the art</a>
+                        <a href="#gallery" class="btn btn-psuedo text-white" role="button">Visit the art</a>
                       </div>
                     </div>
                   </div></div>
@@ -356,10 +290,44 @@
               </div>
               <!-- / Swiper Info-->        </section>
           <!--/ Top Banner-->
-  
-          <!-- Featured Brands-->
+
+          <div class="container-fluid">
+               <!-- Homepage Intro-->
+            <div class="position-relative row my-lg-7 pt-5 pt-lg-0 g-8">
+              <div class="bg-text bottom-0 start-0 end-0" data-aos="fade-up">
+                  <h2 class="bg-text-title opacity-10"><span class="text-outline-dark">Visual</span>Vogue</h2>
+              </div>
+              <div class="col-12 col-md-6 position-relative z-index-20 mb-7 mb-lg-0" data-aos="fade-right">
+                  <p class="text-muted title-small">Welcome</p>
+                  <h3 class="display-3 fw-bold mb-5"><span class="text-outline-dark">Visual Vogue</span> - the Canvas of Infinite Possibilities.</h3>
+                  <p class="lead">
+                      Welcome to our vibrant hub, where artists and enthusiasts mingle, inspire, unite to explore, share, and celebrate creativity.</p>
+                  <p class="lead"> Join us on this timeless voyage, where every visit promises to be a moment of discovery and each stroke of the brush carries a story waiting to be told.</p>
+                  <a href="#gallery" class="btn btn-psuedo" role="button">visit gallery</a>
+              </div>
+              <div class="col-12 col-md-6 position-relative z-index-20 pe-0" data-aos="fade-left">
+                  <picture class="w-50 d-block position-relative z-index-10 border border-white border-4 shadow-lg">
+                      <img class="img-fluid" src="./assets/assets-new/images/banners/flash side banners1'.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                  </picture>
+                  <picture class="w-60 d-block me-8 mt-n10 shadow-lg border border-white border-4 position-relative z-index-20 ms-auto">
+                      <img class="img-fluid" src="./assets/assets-new/images/banners/banners intro2.jpg " alt="HTML Bootstrap Template by Pixel Rocket">
+                  </picture>
+                  <picture class="w-50 d-block me-8 mt-n7 shadow-lg border border-white border-4 position-absolute top-0 end-0 z-index-0 ">
+                      <img class="img-fluid" src="./assets/assets-new/images/banners/banners intro3.jpg" alt="HTML Bootstrap Template by Pixel Rocket">
+                  </picture>
+              </div>
+          </div>
+<hr>
           
-          <!--/ Featured Brands-->
+      
+      <h3 class="display-3 fw-bold "><span class="text-muted title-medium">Gallery</span></h3>
+      <div id="imageContainer"></div>
+
+
+
+
+    </div> 
+    </section>
   
           
   
@@ -367,8 +335,7 @@
       </section>
       <!-- / Main Section-->
   
-      <!-- Footer -->
-          <!-- / Footer-->
+      
   
   
       <!-- Theme JS -->
@@ -377,6 +344,53 @@
       
       <!-- Theme JS -->
       <script src="./assets/js/theme.bundle.js"></script>
+
+      <script>
+        async function loadAll(){
+          const response = await fetch('/homeImages').catch(console.error);
+      
+		      if(response.ok){
+						var images = await response.json();
+						images.forEach(image=>{
+							console.log(image);
+							var imageElement = document.createElement('img');
+							imageElement.src = `data:${image.image.contentType};base64,${image.image.data.toString('base64')}`
+							imageElement.height = `${image.height}`;
+							imageElement.width = `${image.width}`;
+							imageElement.id = image._id;
+
+							imageElement.style.marginTop ='3rem';
+							imageElement.style.marginRight = '1rem';
+							imageElement.style.marginBottom = '1rem';
+							imageElement.style.marginLeft = '2rem'; 
+							imageElement.style.borderRadius='3px';
+
+							imageElement.onclick = function(){
+								loadImage(image._id)
+							}
+
+							document.getElementById('imageContainer').appendChild(imageElement);
+						})
+            		}
+				}
+
+        async function loadImage(img_id){
+					console.log("Clicked")
+					console.log(img_id)
+					fetch(`/getImageDetails/${img_id}`)
+					.then(async response=>{
+						if(!response.ok){
+							throw new Error("Response Not Ok")
+						}
+						else{
+							const productDetails = await response.json()
+							console.log(productDetails)
+							localStorage.setItem('productDetails', JSON.stringify(productDetails))
+							window.location.href = '/goToProduct'
+						}
+					})
+				}
+      </script>
 
   
   
